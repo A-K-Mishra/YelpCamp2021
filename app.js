@@ -9,6 +9,8 @@ const flash= require('connect-flash');
 const session = require('express-session');
 const path = require('path');
 const mongoose = require('mongoose');
+const Campground = require('./models/campground');
+const Review = require('./models/review');
 const User = require('./models/user');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
@@ -24,7 +26,7 @@ const LocalStrategy= require('passport-local');
 const helmet = require('helmet');
 const MongoStore = require("connect-mongo");
 
-const dburl= process.env.DB_URL||'mongodb://localhost:27017/yelp-camp';
+const dburl= process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 mongoose.connect(dburl,
     {
         useUnifiedTopology: true,
@@ -162,6 +164,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
     //res.send(`Oh boy !! Something went wrong!! ${err.name}`)
 })
-app.listen(3000, () => {
-    console.log("Serving from Port 3000.....");
+const port = process.env.PORT || 3000
+app.listen(port, () => {
+    console.log(`Serving from Port ${port}.....`);
 });
