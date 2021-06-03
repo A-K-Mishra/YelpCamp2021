@@ -26,7 +26,7 @@ const LocalStrategy= require('passport-local');
 const helmet = require('helmet');
 const MongoStore = require("connect-mongo");
 
-const dburl= process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+const dburl=process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 mongoose.connect(dburl,
     {
         useUnifiedTopology: true,
